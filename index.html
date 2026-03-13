@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axis — Menu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__brand">Axis</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html" class="active">Menu</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow">Est. 2018 &mdash; Downtown</p>
+    <h1 class="page-hero__title">Our Menu</h1>
+    <p class="page-hero__sub">Handcrafted cocktails &middot; Curated spirits &middot; Small plates</p>
+  </header>
+
+  <!-- ===== Main Content ===== -->
+  <main>
+    <div class="container">
+
+      <!-- ============ DRINKS ============ -->
+      <section class="menu-section" id="drinks">
+        <h2 class="section-title">Drinks</h2>
+
+        <!-- Cocktails -->
+        <p class="section-subtitle">Signature Cocktails</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Axis Old Fashioned</div>
+              <div class="menu-item__desc">Bourbon, smoked maple syrup, Angostura bitters, orange zest</div>
+            </div>
+            <div class="menu-item__price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Dark Meridian</div>
+              <div class="menu-item__desc">Dark rum, blackberry shrub, fresh lime, ginger beer, mint</div>
+            </div>
+            <div class="menu-item__price">$15</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Smoke & Mirrors</div>
+              <div class="menu-item__desc">Mezcal, Aperol, honey syrup, lemon, activated charcoal salt rim</div>
+            </div>
+            <div class="menu-item__price">$17</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Velvet Underground</div>
+              <div class="menu-item__desc">Vodka, black cherry liqueur, elderflower, prosecco, edible glitter</div>
+            </div>
+            <div class="menu-item__price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Nightshade Sour</div>
+              <div class="menu-item__desc">Rye whiskey, blackcurrant cordial, egg white, lemon, bitters foam</div>
+            </div>
+            <div class="menu-item__price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Golden Hour</div>
+              <div class="menu-item__desc">Reposado tequila, turmeric syrup, pineapple, lime, tajin rim</div>
+            </div>
+            <div class="menu-item__price">$15</div>
+          </div>
+        </div>
+
+        <!-- Beer -->
+        <p class="section-subtitle">Beer &amp; Cider</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Local Draft Lager</div>
+              <div class="menu-item__desc">Rotating local craft selection — ask your bartender</div>
+            </div>
+            <div class="menu-item__price">$8</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">IPA — Hazy</div>
+              <div class="menu-item__desc">Tropical & citrus forward, 6.8% ABV, 16 oz pour</div>
+            </div>
+            <div class="menu-item__price">$9</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Stout — Imperial</div>
+              <div class="menu-item__desc">Roasted coffee & dark chocolate notes, 9.2% ABV, 12 oz pour</div>
+            </div>
+            <div class="menu-item__price">$10</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Dry Hard Cider</div>
+              <div class="menu-item__desc">Small-batch orchard cider, crisp & lightly tart, 5% ABV</div>
+            </div>
+            <div class="menu-item__price">$8</div>
+          </div>
+        </div>
+
+        <!-- Wine -->
+        <p class="section-subtitle">Wine</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Côtes du Rhône Rouge</div>
+              <div class="menu-item__desc">Full-bodied, dark fruit, pepper, Grenache-Syrah blend &mdash; France</div>
+            </div>
+            <div class="menu-item__price">$13 / $48</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Malbec</div>
+              <div class="menu-item__desc">Plum, blackberry, hint of oak &mdash; Mendoza, Argentina</div>
+            </div>
+            <div class="menu-item__price">$12 / $44</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Chardonnay — Unoaked</div>
+              <div class="menu-item__desc">Crisp green apple, citrus, mineral finish &mdash; Burgundy, France</div>
+            </div>
+            <div class="menu-item__price">$13 / $46</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Pinot Grigio</div>
+              <div class="menu-item__desc">Light, dry, floral, pear notes &mdash; Alto Adige, Italy</div>
+            </div>
+            <div class="menu-item__price">$12 / $42</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Sparkling Rosé</div>
+              <div class="menu-item__desc">Strawberry, wild raspberry, fine bubbles &mdash; Provence, France</div>
+            </div>
+            <div class="menu-item__price">$14 / $52</div>
+          </div>
+        </div>
+
+        <!-- Spirits -->
+        <p class="section-subtitle">Spirits &amp; Neat Pours</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Maker's Mark Bourbon</div>
+              <div class="menu-item__desc">Wheat-forward, caramel, vanilla, mild oak — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$12</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Glenfiddich 18 Yr</div>
+              <div class="menu-item__desc">Single malt Scotch — dried fruit, oaky toffee — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$22</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Casamigos Añejo</div>
+              <div class="menu-item__desc">Smooth tequila — vanilla, caramel, subtle smoky oak — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$18</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Del Maguey Mezcal</div>
+              <div class="menu-item__desc">Single-village, smoky agave, citrus undercurrent — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$20</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Diplomatico Reserva Rum</div>
+              <div class="menu-item__desc">Venezuelan rum — molasses, dried fruits, long finish — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Hendrick's Gin</div>
+              <div class="menu-item__desc">Cucumber & rose petal botanicals, served chilled — 1.5 oz</div>
+            </div>
+            <div class="menu-item__price">$14</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ============ FOOD ============ -->
+      <section class="menu-section" id="food">
+        <h2 class="section-title">Food</h2>
+
+        <!-- Small Plates -->
+        <p class="section-subtitle">Small Plates &amp; Shareables</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Truffle Fries</div>
+              <div class="menu-item__desc">Hand-cut fries, black truffle oil, parmesan, fresh thyme, aioli</div>
+            </div>
+            <div class="menu-item__price">$14</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Charcuterie Board</div>
+              <div class="menu-item__desc">Cured meats, aged cheeses, cornichons, grainy mustard, crostini</div>
+            </div>
+            <div class="menu-item__price">$22</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Spiced Lamb Skewers</div>
+              <div class="menu-item__desc">Harissa-marinated lamb, tzatziki, sumac onions, grilled pita</div>
+            </div>
+            <div class="menu-item__price">$18</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Burrata &amp; Heirloom Tomato</div>
+              <div class="menu-item__desc">Creamy burrata, heirloom tomatoes, basil oil, fleur de sel, balsamic</div>
+            </div>
+            <div class="menu-item__price">$16</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Crispy Calamari</div>
+              <div class="menu-item__desc">Lightly breaded, served with lemon aioli & smoked paprika dipping sauce</div>
+            </div>
+            <div class="menu-item__price">$15</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Korean BBQ Wings</div>
+              <div class="menu-item__desc">Gochujang glaze, sesame, scallions, pickled daikon — 8 wings</div>
+            </div>
+            <div class="menu-item__price">$17</div>
+          </div>
+        </div>
+
+        <!-- Mains -->
+        <p class="section-subtitle">Mains</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Axis Burger</div>
+              <div class="menu-item__desc">Double smash patty, aged cheddar, caramelized onion, house sauce, brioche</div>
+            </div>
+            <div class="menu-item__price">$20</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Pan-Seared Salmon</div>
+              <div class="menu-item__desc">Miso-glazed salmon, jasmine rice, bok choy, yuzu beurre blanc</div>
+            </div>
+            <div class="menu-item__price">$28</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Steak Frites</div>
+              <div class="menu-item__desc">8 oz hanger steak, chimichurri, pomme frites, watercress salad</div>
+            </div>
+            <div class="menu-item__price">$34</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Wild Mushroom Risotto</div>
+              <div class="menu-item__desc">Porcini &amp; cremini, aged parmesan, truffle oil, crispy sage (v)</div>
+            </div>
+            <div class="menu-item__price">$24</div>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <p class="section-subtitle">Desserts</p>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Chocolate Lava Cake</div>
+              <div class="menu-item__desc">Warm dark chocolate, vanilla bean ice cream, gold dust</div>
+            </div>
+            <div class="menu-item__price">$12</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Crème Brûlée</div>
+              <div class="menu-item__desc">Classic vanilla custard, caramelized sugar crust, fresh berries</div>
+            </div>
+            <div class="menu-item__price">$11</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__info">
+              <div class="menu-item__name">Affogato</div>
+              <div class="menu-item__desc">Double espresso over vanilla gelato, optional Frangelico shot</div>
+            </div>
+            <div class="menu-item__price">$10</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p><span>Axis</span> &mdash; Open Tue–Sun, 5pm–2am &mdash; 44 Commerce St</p>
+    <p style="margin-top:0.4rem;">Please drink responsibly. Must be 21+ to consume alcohol.</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
