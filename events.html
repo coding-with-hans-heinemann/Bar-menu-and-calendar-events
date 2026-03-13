@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axis — Events</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================================================
+       ADMIN: Edit the events array below to update the
+       events page. Each object supports:
+         name        (string)  — event title
+         date        (string)  — "YYYY-MM-DD"
+         time        (string)  — display string e.g. "9 PM"
+         description (string)  — short blurb
+         tag         (string)  — optional label e.g. "Live Music"
+  ==================================================== -->
+  <script id="events-data" type="application/json">
+  [
+    {
+      "name": "Jazz & Rye Night",
+      "date": "2026-03-20",
+      "time": "8 PM – 11 PM",
+      "description": "Local jazz quartet The Meridian Collective takes the stage. Featuring our curated rye whiskey flight and complimentary bar bites from 8–9 PM.",
+      "tag": "Live Music"
+    },
+    {
+      "name": "Mezcal Tasting Masterclass",
+      "date": "2026-03-27",
+      "time": "7 PM – 9 PM",
+      "description": "Guided tasting with four premium single-village mezcals. Led by award-winning spirits educator Ramona Vásquez. Tickets include a welcome cocktail.",
+      "tag": "Tasting"
+    },
+    {
+      "name": "Vinyl Sessions Vol. 12",
+      "date": "2026-04-03",
+      "time": "9 PM – 1 AM",
+      "description": "DJ Harlow spins rare soul, funk, and neo-jazz on a vintage turntable setup. No cover charge. Cocktail specials all night.",
+      "tag": "DJ Night"
+    },
+    {
+      "name": "Chef's Table Pairing Dinner",
+      "date": "2026-04-10",
+      "time": "7 PM – 10 PM",
+      "description": "A five-course tasting menu crafted by our head chef, each course paired with a cocktail from our bar team. Seats are very limited — reserve in advance.",
+      "tag": "Dinner Event"
+    },
+    {
+      "name": "Trivia Night",
+      "date": "2026-04-17",
+      "time": "8 PM – 10 PM",
+      "description": "Monthly trivia with prizes including bar tabs, bottles, and Axis merchandise. Teams of up to 6. Arrive early to secure a table.",
+      "tag": "Social"
+    },
+    {
+      "name": "Whiskey & Smoke",
+      "date": "2026-04-24",
+      "time": "7 PM – 9 PM",
+      "description": "An evening dedicated to peated Scotch and Islay whiskies. Flight of five drams, paired with smoked charcuterie. Led by our resident whiskey sommelier.",
+      "tag": "Tasting"
+    }
+  ]
+  </script>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__brand">Axis</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Menu</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow">What's On</p>
+    <h1 class="page-hero__title">Upcoming Events</h1>
+    <p class="page-hero__sub">Live music &middot; Tastings &middot; Special nights</p>
+  </header>
+
+  <!-- ===== Main Content ===== -->
+  <main>
+    <div class="container">
+      <div class="events-grid" id="events-container">
+        <!-- Populated by JS below -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p><span>Axis</span> &mdash; Open Tue–Sun, 5pm–2am &mdash; 44 Commerce St</p>
+    <p style="margin-top:0.4rem;">Events subject to change. Follow us for updates.</p>
+  </footer>
+
+  <script>
+    /* ---- Mobile nav ---- */
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+
+    /* ---- Render events ---- */
+    (function () {
+      const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+      const raw    = document.getElementById('events-data').textContent;
+      const events = JSON.parse(raw);
+      const container = document.getElementById('events-container');
+
+      if (!events || events.length === 0) {
+        container.innerHTML = '<p class="no-events">No upcoming events at this time.<br>Check back soon.</p>';
+        return;
+      }
+
+      // Sort by date ascending
+      events.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      // Only show today and future events
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const upcoming = events.filter(e => {
+        // Parse date as local to avoid UTC-offset surprises
+        const [y, m, d] = e.date.split('-').map(Number);
+        const dt = new Date(y, m - 1, d);
+        return dt >= today;
+      });
+
+      if (upcoming.length === 0) {
+        container.innerHTML = '<p class="no-events">No upcoming events at this time.<br>Check back soon.</p>';
+        return;
+      }
+
+      upcoming.forEach(event => {
+        const [y, m, d] = event.date.split('-').map(Number);
+        const dt  = new Date(y, m - 1, d);
+        const mon = MONTHS[dt.getMonth()];
+        const day = dt.getDate();
+        const dow = DAYS[dt.getDay()];
+
+        const tagHTML = event.tag
+          ? `<span class="event-card__tag">${escHtml(event.tag)}</span>`
+          : '';
+
+        const card = document.createElement('article');
+        card.className = 'event-card';
+        card.innerHTML = `
+          <div class="event-card__date-block">
+            <div class="event-card__cal">
+              <div class="event-card__cal-month">${mon}</div>
+              <div class="event-card__cal-day">${day}</div>
+            </div>
+            <div class="event-card__datetime">
+              <div class="event-card__dow">${dow}</div>
+              <div class="event-card__time">${escHtml(event.time)}</div>
+            </div>
+          </div>
+          <h2 class="event-card__name">${escHtml(event.name)}</h2>
+          <p class="event-card__desc">${escHtml(event.description)}</p>
+          ${tagHTML}
+        `;
+        container.appendChild(card);
+      });
+    })();
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+
+</body>
+</html>
