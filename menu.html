@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axis — Menu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__brand">Axis</a>
+    <button class="navbar__toggle" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar__links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow">3048 Dundas Street West</p>
+    <h1 class="page-hero__title">Our Menu</h1>
+    <p class="page-hero__sub">Handcrafted cocktails &middot; Curated spirits &middot; Small plates &middot; Brunch</p>
+  </header>
+
+  <!-- ===== Tab Bar ===== -->
+  <div class="menu-tabs" role="tablist">
+    <button class="menu-tab active" role="tab" data-tab="bar" onclick="switchTab('bar', this)">Bar Menu</button>
+    <button class="menu-tab" role="tab" data-tab="food" onclick="switchTab('food', this)">Food Menu</button>
+    <button class="menu-tab" role="tab" data-tab="brunch" onclick="switchTab('brunch', this)">Brunch</button>
+  </div>
+
+  <!-- ===== Main Content ===== -->
+  <main>
+    <div class="container">
+
+      <!-- ============ TAB: BAR MENU ============ -->
+      <div id="tab-bar" class="tab-panel active">
+        <section class="menu-section" id="drinks">
+          <h2 class="section-title">Bar Menu</h2>
+
+          <!-- Cocktails -->
+          <p class="section-subtitle">Cocktails</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Caesar</div>
+                <div class="menu-item__desc">2oz vodka</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Margarita</div>
+                <div class="menu-item__desc">2oz tequila, 1/2oz triple sec</div>
+              </div>
+              <div class="menu-item__price">$14</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Long Island Iced Tea</div>
+                <div class="menu-item__desc">2oz LIIT mix</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Mimosa</div>
+                <div class="menu-item__desc">2.5oz champagne</div>
+              </div>
+              <div class="menu-item__price">$9</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Old Fashioned</div>
+                <div class="menu-item__desc">2oz whiskey</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Screwdriver</div>
+                <div class="menu-item__desc">2oz vodka</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Martini</div>
+                <div class="menu-item__desc">2oz vodka or gin, 1/2oz dry vermouth</div>
+              </div>
+              <div class="menu-item__price">$14</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Cosmopolitan</div>
+                <div class="menu-item__desc">2oz vodka</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+          </div>
+
+          <!-- Sangria -->
+          <p class="section-subtitle">Sangria</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Glass Sangria</div>
+                <div class="menu-item__desc">Red or white &mdash; 3oz wine, 1oz rum</div>
+              </div>
+              <div class="menu-item__price">$15</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Pitcher Sangria</div>
+                <div class="menu-item__desc">Red or white &mdash; 9oz wine, 2oz rum</div>
+              </div>
+              <div class="menu-item__price">$27</div>
+            </div>
+          </div>
+
+          <!-- Wine -->
+          <p class="section-subtitle">Wine <small style="font-weight:normal;font-size:0.75rem;">(6oz / 9oz / &frac12; litre / bottle)</small></p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">House Red / White</div>
+              </div>
+              <div class="menu-item__price">$9 / $13 / $24 / $30</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Other Red / White</div>
+              </div>
+              <div class="menu-item__price">$11 / $15 / $26 / $34</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Prosecco</div>
+              </div>
+              <div class="menu-item__price">$11 / $35</div>
+            </div>
+          </div>
+
+          <!-- Draught Beer -->
+          <p class="section-subtitle">Draught Beer <small style="font-weight:normal;font-size:0.75rem;">(pint / pitcher)</small></p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Stella Artois</div></div>
+              <div class="menu-item__price">$10 / $28</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Alexander Keith's</div></div>
+              <div class="menu-item__price">$8 / $24</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Juicy AF IPA</div></div>
+              <div class="menu-item__price">$9 / $24</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Space Invaders IPA</div></div>
+              <div class="menu-item__price">$9 / $24</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Amsterdam Blonde</div></div>
+              <div class="menu-item__price">$9 / $24</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Steam Whistle</div></div>
+              <div class="menu-item__price">$8 / $23</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Moosehead</div></div>
+              <div class="menu-item__price">$8 / $23</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Beau's Lug Tread</div></div>
+              <div class="menu-item__price">$8 / $23</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">High Park Ale</div></div>
+              <div class="menu-item__price">$8 / $23</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">High Park Lager</div></div>
+              <div class="menu-item__price">$8 / $23</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Guinness</div></div>
+              <div class="menu-item__price">$10 / $28</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Cider</div></div>
+              <div class="menu-item__price">$10 / $28</div>
+            </div>
+          </div>
+
+          <!-- Cans -->
+          <p class="section-subtitle">Cans</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Moosehead</div><div class="menu-item__desc">473ml</div></div>
+              <div class="menu-item__price">$7</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Sapporo</div><div class="menu-item__desc">500ml</div></div>
+              <div class="menu-item__price">$8</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Tuborg</div><div class="menu-item__desc">473ml</div></div>
+              <div class="menu-item__price">$8</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">3 Speed Tall Can</div><div class="menu-item__desc">568ml</div></div>
+              <div class="menu-item__price">$8</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Brickworks Cider</div><div class="menu-item__desc">473ml</div></div>
+              <div class="menu-item__price">$8</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Stiegl</div><div class="menu-item__desc">500ml</div></div>
+              <div class="menu-item__price">$8</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">White Claw</div><div class="menu-item__desc">473ml</div></div>
+              <div class="menu-item__price">$5</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Stiegl Radler</div><div class="menu-item__desc">500ml</div></div>
+              <div class="menu-item__price">$9</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">PBR</div><div class="menu-item__desc">473ml</div></div>
+              <div class="menu-item__price">$6</div>
+            </div>
+          </div>
+
+          <!-- Bottles -->
+          <p class="section-subtitle">Bottles</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Budweiser, Canadian, Coors Light, or Labatt Blue</div>
+                <div class="menu-item__desc">341ml</div>
+              </div>
+              <div class="menu-item__price">$6</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">MGD</div>
+                <div class="menu-item__desc">341ml&ndash;355ml</div>
+              </div>
+              <div class="menu-item__price">$6</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Smirnoff Ice, Stella, Heineken, or Corona</div>
+                <div class="menu-item__desc">330ml</div>
+              </div>
+              <div class="menu-item__price">$8</div>
+            </div>
+          </div>
+
+          <!-- Non-Alcoholic -->
+          <p class="section-subtitle">Non-Alcoholic</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Red Bull</div></div>
+              <div class="menu-item__price">$5</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">Perrier</div></div>
+              <div class="menu-item__price">$4</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">0% Guinness</div></div>
+              <div class="menu-item__price">$6</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info"><div class="menu-item__name">0% Beer</div></div>
+              <div class="menu-item__price">$5</div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- ============ TAB: FOOD MENU ============ -->
+      <div id="tab-food" class="tab-panel">
+        <section class="menu-section" id="food">
+          <h2 class="section-title">Food Menu</h2>
+
+          <!-- Small Plates -->
+          <p class="section-subtitle">Small Plates &amp; Shareables</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Truffle Fries</div>
+                <div class="menu-item__desc">Hand-cut fries, black truffle oil, parmesan, fresh thyme, aioli</div>
+              </div>
+              <div class="menu-item__price">$14</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Charcuterie Board</div>
+                <div class="menu-item__desc">Cured meats, aged cheeses, cornichons, grainy mustard, crostini</div>
+              </div>
+              <div class="menu-item__price">$22</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Spiced Lamb Skewers</div>
+                <div class="menu-item__desc">Harissa-marinated lamb, tzatziki, sumac onions, grilled pita</div>
+              </div>
+              <div class="menu-item__price">$18</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Burrata &amp; Heirloom Tomato</div>
+                <div class="menu-item__desc">Creamy burrata, heirloom tomatoes, basil oil, fleur de sel, balsamic</div>
+              </div>
+              <div class="menu-item__price">$16</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Crispy Calamari</div>
+                <div class="menu-item__desc">Lightly breaded, served with lemon aioli & smoked paprika dipping sauce</div>
+              </div>
+              <div class="menu-item__price">$15</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Korean BBQ Wings</div>
+                <div class="menu-item__desc">Gochujang glaze, sesame, scallions, pickled daikon — 8 wings</div>
+              </div>
+              <div class="menu-item__price">$17</div>
+            </div>
+          </div>
+
+          <!-- Mains -->
+          <p class="section-subtitle">Mains</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Axis Burger</div>
+                <div class="menu-item__desc">Double smash patty, aged cheddar, caramelized onion, house sauce, brioche</div>
+              </div>
+              <div class="menu-item__price">$20</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Pan-Seared Salmon</div>
+                <div class="menu-item__desc">Miso-glazed salmon, jasmine rice, bok choy, yuzu beurre blanc</div>
+              </div>
+              <div class="menu-item__price">$28</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Steak Frites</div>
+                <div class="menu-item__desc">8 oz hanger steak, chimichurri, pomme frites, watercress salad</div>
+              </div>
+              <div class="menu-item__price">$34</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Wild Mushroom Risotto</div>
+                <div class="menu-item__desc">Porcini &amp; cremini, aged parmesan, truffle oil, crispy sage (v)</div>
+              </div>
+              <div class="menu-item__price">$24</div>
+            </div>
+          </div>
+
+          <!-- Desserts -->
+          <p class="section-subtitle">Desserts</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Chocolate Lava Cake</div>
+                <div class="menu-item__desc">Warm dark chocolate, vanilla bean ice cream, gold dust</div>
+              </div>
+              <div class="menu-item__price">$12</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Crème Brûlée</div>
+                <div class="menu-item__desc">Classic vanilla custard, caramelized sugar crust, fresh berries</div>
+              </div>
+              <div class="menu-item__price">$11</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Affogato</div>
+                <div class="menu-item__desc">Double espresso over vanilla gelato, optional Frangelico shot</div>
+              </div>
+              <div class="menu-item__price">$10</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ TAB: BRUNCH ============ -->
+      <div id="tab-brunch" class="tab-panel">
+        <section class="menu-section" id="brunch">
+          <h2 class="section-title">Brunch</h2>
+          <p class="brunch-hours-note">Served Thursday–Sunday &middot; 9am–3pm</p>
+
+          <!-- Brunch Food -->
+          <p class="section-subtitle">Food</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Eggs Benedict</div>
+                <div class="menu-item__desc">Poached eggs, Canadian back bacon, hollandaise, English muffin</div>
+              </div>
+              <div class="menu-item__price">$16</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Axis Breakfast Poutine</div>
+                <div class="menu-item__desc">Hand-cut fries, cheese curds, house gravy, fried egg</div>
+              </div>
+              <div class="menu-item__price">$17</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Avocado Toast</div>
+                <div class="menu-item__desc">Smashed avocado, sourdough, chili flakes, poached egg, microgreens</div>
+              </div>
+              <div class="menu-item__price">$15</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Buttermilk Pancakes</div>
+                <div class="menu-item__desc">Stack of three, maple syrup, whipped butter, seasonal fruit</div>
+              </div>
+              <div class="menu-item__price">$14</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Breakfast Burger</div>
+                <div class="menu-item__desc">Smash patty, fried egg, cheddar, bacon, house sauce, brioche bun</div>
+              </div>
+              <div class="menu-item__price">$18</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">French Toast</div>
+                <div class="menu-item__desc">Thick-cut brioche, vanilla custard, powdered sugar, berry compote</div>
+              </div>
+              <div class="menu-item__price">$14</div>
+            </div>
+          </div>
+
+          <!-- Brunch Drinks -->
+          <p class="section-subtitle">Drinks</p>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Mimosa</div>
+                <div class="menu-item__desc">2.5oz champagne, fresh orange juice</div>
+              </div>
+              <div class="menu-item__price">$9</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Caesar</div>
+                <div class="menu-item__desc">2oz vodka, Clamato, hot sauce, celery salt, rim</div>
+              </div>
+              <div class="menu-item__price">$13</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Coffee or Tea</div>
+                <div class="menu-item__desc">Drip coffee or steeped tea, free refills</div>
+              </div>
+              <div class="menu-item__price">$4</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item__info">
+                <div class="menu-item__name">Fresh Orange Juice</div>
+                <div class="menu-item__desc">Freshly squeezed</div>
+              </div>
+              <div class="menu-item__price">$5</div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+    </div><!-- .container -->
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p><span>Axis</span> &mdash; 3048 Dundas Street West &mdash; Open Tue–Sun 5pm–2am &mdash; Brunch Thu–Sun 9am–3pm</p>
+    <p style="margin-top:0.4rem;">Please drink responsibly. Must be of legal drinking age.</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
