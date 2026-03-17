@@ -147,6 +147,10 @@
     }
   ]
   </script>
+  <script>
+    // Make events accessible to calendar
+    window._axisEvents = JSON.parse(document.getElementById('events-data').textContent);
+  </script>
 
   <!-- ===== Navbar ===== -->
   <nav class="navbar">
@@ -171,6 +175,7 @@
   <!-- ===== Calendar Widget ===== -->
   <div class="container">
     <div class="cal-widget" id="cal-widget"></div>
+    <div class="cal-day-detail" id="cal-day-detail" style="display:none"></div>
   </div>
 
   <!-- ===== Main Content ===== -->
@@ -196,12 +201,16 @@
 
     /* ---- Calendar Widget ---- */
     (function () {
-      const calEl = document.getElementById('cal-widget');
+      const calEl    = document.getElementById('cal-widget');
+      const detailEl = document.getElementById('cal-day-detail');
       const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const DAY_NAMES   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
       const today = new Date();
-      let viewYear = today.getFullYear();
+      let viewYear  = today.getFullYear();
       let viewMonth = today.getMonth();
+      let selectedKey = null; // "YYYY-M-D"
 
+      /* -- helpers -- */
       function is2ndThursday(y, m, d) {
         if (new Date(y, m, d).getDay() !== 4) return false;
         let count = 0;
@@ -221,12 +230,102 @@
       }
 
       function isBrunchDay(dow) {
-        // Thu=4, Fri=5, Sat=6, Sun=0
         return dow === 0 || dow === 4 || dow === 5 || dow === 6;
       }
 
+      /* -- build event list for a given day -- */
+      function getEventsForDay(y, m, d) {
+        const dow    = new Date(y, m, d).getDay();
+        const dateStr = y + '-' + String(m + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+        const items  = [];
+
+        // Brunch
+        if (isBrunchDay(dow)) {
+          items.push({ name: 'Brunch', time: '9 AM – 3 PM', tag: 'Brunch', color: '#2a7a4a' });
+        }
+        // Trivia
+        if (dow === 2) {
+          items.push({ name: 'Trivia Night', time: '8 PM – 10 PM', tag: 'Social', color: 'var(--gold)',
+            desc: 'Teams of up to 6. Prizes include bar tabs and Axis merchandise.' });
+        }
+        // Live Music
+        if (dow === 1 || dow === 5) {
+          items.push({ name: 'Live Music', time: '9 PM', tag: 'Live Music', color: '#e07020',
+            desc: 'Local and touring acts — folk, rock, soul, and jazz. No cover.' });
+        }
+        // Board Games
+        if (is2ndThursday(y, m, d)) {
+          items.push({ name: 'Board Games & Chess Night', time: '7 PM', tag: 'Social', color: '#8844cc',
+            desc: 'Classic board games, chess sets, and cold drinks. All skill levels welcome.' });
+        }
+        // One-off events from JSON
+        if (window._axisEvents) {
+          window._axisEvents.forEach(function(e) {
+            if (e.date === dateStr) {
+              // avoid duplicating recurring events already added above
+              const alreadyAdded = items.some(function(i) { return i.name === e.name; });
+              if (!alreadyAdded) {
+                items.push({ name: e.name, time: e.time, tag: e.tag, desc: e.description, color: '#c8922a' });
+              }
+            }
+          });
+        }
+        return items;
+      }
+
+      /* -- show day detail panel -- */
+      function showDayDetail(y, m, d) {
+        const key = y + '-' + m + '-' + d;
+        // Toggle off if same day clicked again
+        if (selectedKey === key) {
+          selectedKey = null;
+          detailEl.style.display = 'none';
+          render();
+          return;
+        }
+        selectedKey = key;
+        render(); // re-render to update selected highlight
+
+        const items    = getEventsForDay(y, m, d);
+        const dow      = new Date(y, m, d).getDay();
+        const label    = DAY_NAMES[dow] + ', ' + MONTH_NAMES[m] + ' ' + d;
+
+        let inner = '<div class="cal-detail-header">';
+        inner += '<span class="cal-detail-title">' + label + '</span>';
+        inner += '<button class="cal-detail-close" onclick="closeDayDetail()" aria-label="Close">&times;</button>';
+        inner += '</div>';
+
+        if (items.length === 0) {
+          inner += '<p class="cal-detail-empty">No events scheduled for this day.</p>';
+        } else {
+          inner += '<ul class="cal-detail-list">';
+          items.forEach(function(item) {
+            inner += '<li class="cal-detail-item">';
+            inner += '<span class="cal-detail-dot" style="background:' + item.color + '"></span>';
+            inner += '<div class="cal-detail-info">';
+            inner += '<div class="cal-detail-name">' + escHtml(item.name) + '</div>';
+            if (item.time) inner += '<div class="cal-detail-time">' + escHtml(item.time) + '</div>';
+            if (item.desc) inner += '<div class="cal-detail-desc">' + escHtml(item.desc) + '</div>';
+            inner += '</div></li>';
+          });
+          inner += '</ul>';
+        }
+
+        detailEl.innerHTML = inner;
+        detailEl.style.display = 'block';
+        // Smooth scroll to detail panel
+        detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      window.closeDayDetail = function() {
+        selectedKey = null;
+        detailEl.style.display = 'none';
+        render();
+      };
+
+      /* -- render calendar -- */
       function render() {
-        const firstDow = new Date(viewYear, viewMonth, 1).getDay();
+        const firstDow    = new Date(viewYear, viewMonth, 1).getDay();
         const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
 
         let html = '<div class="cal-header">';
@@ -236,28 +335,28 @@
         html += '</div>';
 
         html += '<div class="cal-grid">';
-        // Day-of-week headers
         ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function (d) {
           html += '<div class="cal-dow-header">' + d + '</div>';
         });
 
-        // Empty leading cells
         for (let i = 0; i < firstDow; i++) {
           html += '<div class="cal-cell cal-cell--empty"></div>';
         }
 
-        // Day cells
         for (let d = 1; d <= daysInMonth; d++) {
-          const dow = new Date(viewYear, viewMonth, d).getDay();
-          const isToday = (today.getFullYear() === viewYear && today.getMonth() === viewMonth && today.getDate() === d);
+          const dow    = new Date(viewYear, viewMonth, d).getDay();
+          const isToday    = (today.getFullYear() === viewYear && today.getMonth() === viewMonth && today.getDate() === d);
+          const isSelected = (selectedKey === viewYear + '-' + viewMonth + '-' + d);
           const brunch = isBrunchDay(dow);
-          const dots = getDots(viewYear, viewMonth, d);
+          const dots   = getDots(viewYear, viewMonth, d);
 
-          let cls = 'cal-cell';
-          if (brunch) cls += ' cal-cell--brunch';
-          if (isToday) cls += ' cal-cell--today';
+          let cls = 'cal-cell cal-cell--clickable';
+          if (brunch)     cls += ' cal-cell--brunch';
+          if (isToday)    cls += ' cal-cell--today';
+          if (isSelected) cls += ' cal-cell--selected';
 
-          html += '<div class="' + cls + '">';
+          const vy = viewYear, vm = viewMonth, vd = d;
+          html += '<div class="' + cls + '" onclick="window._calClick(' + vy + ',' + vm + ',' + vd + ')">';
           html += '<span class="cal-day-num">' + d + '</span>';
           if (dots.length > 0) {
             html += '<div class="cal-dots">';
@@ -269,14 +368,13 @@
           html += '</div>';
         }
 
-        html += '</div>'; // .cal-grid
+        html += '</div>';
 
-        // Legend
         html += '<div class="cal-legend">';
         html += '<span class="cal-legend-item"><span class="cal-dot" style="background:var(--gold)"></span> Trivia Night (Tue)</span>';
         html += '<span class="cal-legend-item"><span class="cal-dot" style="background:#e07020"></span> Live Music (Mon &amp; Fri)</span>';
         html += '<span class="cal-legend-item"><span class="cal-dot" style="background:#8844cc"></span> Board Games &amp; Chess (2nd Thu)</span>';
-        html += '<span class="cal-legend-item"><span class="cal-legend-brunch-swatch"></span> Brunch hours (Thu–Sun)</span>';
+        html += '<span class="cal-legend-item"><span class="cal-legend-brunch-swatch"></span> Brunch (Thu–Sun)</span>';
         html += '</div>';
 
         calEl.innerHTML = html;
@@ -284,15 +382,18 @@
         document.getElementById('cal-prev').addEventListener('click', function () {
           viewMonth--;
           if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+          if (selectedKey) { selectedKey = null; detailEl.style.display = 'none'; }
           render();
         });
         document.getElementById('cal-next').addEventListener('click', function () {
           viewMonth++;
           if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+          if (selectedKey) { selectedKey = null; detailEl.style.display = 'none'; }
           render();
         });
       }
 
+      window._calClick = showDayDetail;
       render();
     })();
 
